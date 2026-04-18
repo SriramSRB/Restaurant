@@ -8,20 +8,20 @@ spec:
   replicas: 2
   strategy:
     type: RollingUpdate
-    selector:
-      matchLabels:
+  selector:
+    matchLabels:
+      project: restaurant
+  template:
+    metadata:
+      labels:
         project: restaurant
-    template:
-      metadata:
-        labels:
-          project: restaurant
-      spec:
-        containers:
-          - name: restaurant-app-container
-            image: sriramsrb/restaurant:latest
-            imagePullPolicy: Never
-            ports:
-              - containerPort: 3000
+    spec:
+      containers:
+        - name: restaurant-app-container
+          image: sriramsrb/restaurant:latest
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 3000
 
 ---
 
