@@ -5,23 +5,23 @@ metadata:
   labels:
     project: restaurant
 spec:
-replicas: 2
-strategy:
-  type: RollingUpdate
-  selector:
-    matchLabels:
-      project: restaurant
-  template:
-    metadata:
-      labels:
+  replicas: 2
+  strategy:
+    type: RollingUpdate
+    selector:
+      matchLabels:
         project: restaurant
-    spec:
-      containers:
-        - name: restaurant-app-container
-          image: sriramsrb/restaurant:latest
-          imagePullPolicy: Never
-          ports:
-            - containerPort: 3000
+    template:
+      metadata:
+        labels:
+          project: restaurant
+      spec:
+        containers:
+          - name: restaurant-app-container
+            image: sriramsrb/restaurant:latest
+            imagePullPolicy: Never
+            ports:
+              - containerPort: 3000
 
 ---
 
