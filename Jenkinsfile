@@ -12,8 +12,8 @@ pipeline {
                 sh 'docker build -t sriramsrb/restaurant:latest .'
             }
         }
-        stage {
-            steps ('3. Docker push image') {
+        stage ('3. Docker push image') {
+            steps {
                 withCredentials([string(credentialId: 'dockerhub_user', variable: 'DOCKER_PWD')]) {
                     sh 'echo "$DOCKER_PWD" | docker login -u sriramsrb --password-stdin'
                     sh 'docker push sriramsrb/restaurant:latest'
