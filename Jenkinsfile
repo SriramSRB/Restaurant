@@ -2,13 +2,13 @@ pipeline {
     agent any
 
     stages {
-        stage {
-            steps ('1. Checkout code') {
+        stage ('1. Checkout code') {
+            steps {
                 checkout scm
             }
         }
-        stage {
-            steps ('2. Docker image build') {
+        stage ('2. Docker image build') {
+            steps {
                 sh 'docker build -t sriramsrb/restaurant:latest .'
             }
         }
@@ -20,8 +20,8 @@ pipeline {
                 }
             }
         }
-        stage {
-            steps ('4. deploy to kubernetes') {
+        stage ('4. deploy to kubernetes') {
+            steps {
                 sh 'kubectl apply -f deployment.yml'
                 sh 'kubectl rollout restart deployment restaurant-app-deployment'
             }
